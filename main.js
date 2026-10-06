@@ -97,6 +97,7 @@
     var megas = $$('.has-mega');
     var desktop = function () { return window.matchMedia('(min-width: 900px)').matches; };
     var canHover = function () { return window.matchMedia('(hover: hover)').matches; };
+    var escFocus = false;
 
     function setMenu(open) {
       if (!btn || !nav) { return; }
@@ -118,7 +119,7 @@
       t.addEventListener('click', function () { setMega(li, !li.classList.contains('open')); });
       li.addEventListener('mouseenter', function () { if (desktop() && canHover()) { setMega(li, true); } });
       li.addEventListener('mouseleave', function () { if (desktop() && canHover()) { setMega(li, false); } });
-      li.addEventListener('focusin', function () { if (desktop()) { setMega(li, true); } });
+      li.addEventListener('focusin', function () { if (desktop() && !escFocus) { setMega(li, true); } });
       li.addEventListener('focusout', function (e) {
         if (desktop() && (!e.relatedTarget || !li.contains(e.relatedTarget))) { setMega(li, false); }
       });
@@ -133,7 +134,7 @@
       if (openMega) {
         var focusInside = openMega.contains(document.activeElement);
         closeAll();
-        if (focusInside) { $('.mega-toggle', openMega).focus(); }
+        if (focusInside) { escFocus = true; $('.mega-toggle', openMega).focus(); escFocus = false; }
       }
       if (nav && nav.classList.contains('open')) { setMenu(false); if (btn) { btn.focus(); } }
     });

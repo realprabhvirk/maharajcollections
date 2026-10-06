@@ -517,3 +517,8 @@ section[id], div[id].anchor { scroll-margin-top: calc(var(--header-h) + 16px); }
 .pdp-info > div:first-child { display: grid; gap: 12px; }
 .contact-grid .h2 { margin-bottom: 18px; }
 .nb { white-space: nowrap; }
+.brand { min-height: 44px; }
+.site-footer li a, .site-footer address a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+.site-footer address span { display: block; padding: 4px 0; }
+.contact-list a { display: inline-flex; align-items: center; min-height: 44px; }
+.text-link { display: inline-block; padding-block: 2px; }
