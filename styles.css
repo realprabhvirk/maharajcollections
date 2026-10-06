@@ -522,3 +522,28 @@ section[id], div[id].anchor { scroll-margin-top: calc(var(--header-h) + 16px); }
 .site-footer address span { display: block; padding: 4px 0; }
 .contact-list a { display: inline-flex; align-items: center; min-height: 44px; }
 .text-link { display: inline-block; padding-block: 2px; }
+
+/* ---------- Checkout (demo) ---------- */
+.co-grid { display: grid; gap: 48px; }
+@media (min-width: 1000px) { .co-grid { grid-template-columns: 1.2fr 0.8fr; gap: 72px; align-items: start; } .co-summary { position: sticky; top: calc(var(--header-h) + 24px); } }
+.co-form { display: grid; gap: 40px; }
+.co-block { display: grid; gap: 20px; padding-top: 22px; border-top: 1px solid var(--gilt); }
+.co-block h2 { font-size: 1.9rem; }
+.row2 { display: grid; gap: 22px; }
+@media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+.check { display: flex; gap: 12px; align-items: flex-start; min-height: 44px; }
+.check input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--nishan); flex: none; }
+.pay-note { padding: 14px 16px; border-left: 2px solid var(--gilt); background: var(--marble-2); font-size: 0.95rem; }
+.co-summary { padding: 28px; background: var(--marble-2); border-top: 1px solid var(--gilt); display: grid; gap: 18px; }
+.co-summary h2 { font-size: 1.7rem; }
+.sum-lines { display: grid; gap: 16px; }
+.sum-line { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; }
+.sum-line img { width: 64px; height: 64px; object-fit: cover; object-position: 50% 30%; border: 1px solid rgba(138, 106, 31, 0.6); }
+.sum-line small { display: block; color: var(--stone-soft); font-size: 0.86rem; }
+.sum-line span { font-family: var(--serif); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.sum-totals { margin: 0; display: grid; gap: 8px; padding-top: 16px; border-top: 1px solid rgba(42, 47, 48, 0.25); }
+.sum-totals div { display: flex; justify-content: space-between; }
+.sum-totals dt, .sum-totals dd { margin: 0; font-variant-numeric: tabular-nums; }
+.sum-total { padding-top: 10px; font-family: var(--serif); font-size: 1.6rem; }
+.sum-gst { font-size: 0.88rem; color: var(--stone-soft); }
+.done-list { display: grid; gap: 2px; padding-left: 18px; list-style: disc; }

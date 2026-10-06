@@ -420,6 +420,10 @@
       if (!v) { msg = input.getAttribute('data-msg') || 'This one is needed so we can reply.'; }
       else if (kind === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg = 'That email doesn’t look right. It should read like name@example.com.'; }
       else if (kind === 'min10' && v.length < 10) { msg = 'A sentence or two helps us give you a useful answer.'; }
+      else if (kind === 'postcode' && !/^\d{4}$/.test(v)) { msg = 'Australian postcodes are 4 digits, like 3000.'; }
+      else if (kind === 'card' && !/^\d{13,19}$/.test(v.replace(/\s/g, ''))) { msg = 'Enter 13 to 19 digits. Any made-up number works in this demo.'; }
+      else if (kind === 'expiry' && !/^(0[1-9]|1[0-2])\/\d{2}$/.test(v)) { msg = 'Use month and year, like 08/29.'; }
+      else if (kind === 'cvc' && !/^\d{3,4}$/.test(v)) { msg = 'The security code is 3 or 4 digits.'; }
       fieldError(input, msg);
       if (msg && !first) { first = input; }
     });
@@ -530,7 +534,8 @@
       }).join('');
       root.innerHTML = '<ul class="lines">' + rows + '</ul>' +
         '<div class="total-row"><span>Order total (AUD incl. GST)</span><b>' + aud(total) + '</b></div>' +
-        '<p class="lead">Free insured delivery Australia-wide.</p>';
+        '<p class="lead">Free insured delivery Australia-wide.</p>' +
+        '<div class="btn-row"><a class="btn btn--blue" href="checkout.html">Go to checkout</a><a class="btn btn--ghost" href="catalogue.html">Keep browsing</a></div>';
     }
     root.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-act]');
@@ -568,6 +573,79 @@
     }
   }
 
+
+  /* ---------- Checkout (dummy, nothing is sent or stored) ---------- */
+  function initCheckout() {
+    var main = $('#co-main');
+    if (!main) { return; }
+    var form = $('#checkout-form'), install = $('#co-install'), sumHost = $('#co-summary');
+    if (!getBag().length) {
+      main.innerHTML = '<div class="empty"><h2>Your bag is empty.</h2><p class="lead">Add a piece first, then come back to check out.</p><a class="btn" href="catalogue.html">Browse the catalogue</a></div>';
+      return;
+    }
+    function totals() {
+      var sub = 0;
+      getBag().forEach(function (l) { sub += lineInfo(l).total; });
+      var inst = install && install.checked ? 149 : 0;
+      return { sub: sub, inst: inst, total: sub + inst };
+    }
+    function renderSummary() {
+      var t = totals();
+      var rows = getBag().map(function (l) {
+        var x = lineInfo(l);
+        return '<li class="sum-line"><picture><source srcset="images/' + x.p.img + '.webp" type="image/webp"><img src="images/' + x.p.img + '.jpg" alt="' + esc(x.p.alt) + '" width="64" height="64" loading="lazy" decoding="async"></picture>' +
+          '<div><b>' + esc(x.p.name) + '</b><small>' + esc(x.size[0]) + ' · ' + esc(x.size[1]) + ' · Qty ' + l.q + '</small></div><span>' + aud(x.total) + '</span></li>';
+      }).join('');
+      sumHost.innerHTML = '<ul class="sum-lines">' + rows + '</ul>' +
+        '<dl class="sum-totals"><div><dt>Subtotal</dt><dd>' + aud(t.sub) + '</dd></div>' +
+        '<div><dt>Delivery</dt><dd>Free</dd></div>' +
+        (t.inst ? '<div><dt>Professional install</dt><dd>' + aud(t.inst) + '</dd></div>' : '') +
+        '<div class="sum-total"><dt>Total (AUD)</dt><dd>' + aud(t.total) + '</dd></div></dl>' +
+        '<p class="sum-gst">Includes GST of ' + aud(Math.round(t.total / 11)) + '.</p>';
+    }
+    renderSummary();
+    if (install) { install.addEventListener('change', renderSummary); }
+
+    var card = $('#co-card'), exp = $('#co-exp'), cvc = $('#co-cvc');
+    card.addEventListener('input', function () {
+      var d = card.value.replace(/\D/g, '').slice(0, 19);
+      card.value = d.replace(/(.{4})/g, '$1 ').trim();
+    });
+    exp.addEventListener('input', function () {
+      var d = exp.value.replace(/\D/g, '').slice(0, 4);
+      exp.value = d.length > 2 ? d.slice(0, 2) + '/' + d.slice(2) : d;
+    });
+    cvc.addEventListener('input', function () { cvc.value = cvc.value.replace(/\D/g, '').slice(0, 4); });
+    $$('[data-req]', form).forEach(function (input) {
+      input.addEventListener('input', function () { if (input.getAttribute('aria-invalid')) { fieldError(input, ''); } });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = validate(form);
+      if (bad) { bad.focus(); return; }
+      var t = totals(), lines = getBag().map(lineInfo);
+      var num = 'MC-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+      var name = $('#co-name', form).value.trim();
+      var addr = [$('#co-address', form).value.trim(), $('#co-suburb', form).value.trim() + ' ' + $('#co-state', form).value + ' ' + $('#co-postcode', form).value.trim()];
+      var email = $('#co-email', form).value.trim();
+      /* card fields are cleared and never read, stored or sent */
+      card.value = ''; exp.value = ''; cvc.value = ''; $('#co-cardname', form).value = '';
+      var items = lines.map(function (x, i) { return '<li>' + getBagQty(i) + ' x ' + esc(x.p.name) + ' (' + esc(x.size[0]) + ')</li>'; }).join('');
+      setBag([]);
+      main.innerHTML = '<div class="form-result" tabindex="-1" id="co-done"><div class="form-msg"><h2>Order placed, ' + esc(name.split(/\s+/)[0]) + '.</h2>' +
+        '<p>Your demo order number is <b>' + num + '</b>. A confirmation would go to ' + esc(email) + '.</p>' +
+        '<ul class="done-list">' + items + '</ul>' +
+        '<p>Total ' + aud(t.total) + ' AUD incl. GST, delivered free to ' + esc(addr[0]) + ', ' + esc(addr[1]) + '.</p>' +
+        '<p class="demo-note">Demonstration website. No payment was taken and nothing was sent.</p>' +
+        '<div class="btn-row"><a class="btn" href="catalogue.html">Back to the catalogue</a><a class="btn btn--ghost" href="index.html">Home</a></div></div></div>';
+      var done = $('#co-done'); done.focus();
+      window.scrollTo(0, 0);
+    });
+    var qtys = getBag().map(function (l) { return l.q; });
+    function getBagQty(i) { return qtys[i]; }
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     renderBagCount();
@@ -577,6 +655,7 @@
     initCatalogue();
     initProduct();
     initBag();
+    initCheckout();
     initContact();
     initReveal(document);
     initCountUp();

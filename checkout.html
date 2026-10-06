@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | Maharaj Collections</title>
+<meta name="description" content="Demonstration checkout for Maharaj Collections. No payment is taken and nothing is sent.">
+<meta name="theme-color" content="#0B1A1F">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Maharaj Collections">
+<meta property="og:locale" content="en_AU">
+<meta property="og:title" content="Checkout | Maharaj Collections">
+<meta property="og:description" content="Demonstration checkout for Maharaj Collections. No payment is taken and nothing is sent.">
+<meta property="og:image" content="https://maharaj-collections.netlify.app/images/harmandir-sahib-at-dusk.jpg">
+<meta property="og:image:alt" content="Harmandir Sahib at Dusk, the Golden Temple glowing under an evening sky">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Checkout | Maharaj Collections">
+<meta name="twitter:description" content="Demonstration checkout for Maharaj Collections. No payment is taken and nothing is sent.">
+<meta name="twitter:image" content="https://maharaj-collections.netlify.app/images/harmandir-sahib-at-dusk.jpg">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&amp;display=swap">
+<link rel="stylesheet" href="styles.css">
+<script src="products.js" defer></script>
+<script src="main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Maharaj Collections, home">
+      <!-- fallback wordmark, replace with supplied logo if one exists -->
+      <span class="mono" aria-hidden="true">MC</span>
+      <span class="brand-text"><span class="brand-name">Maharaj Collections</span><span class="brand-sub">Fine Wall Art · Australia</span></span>
+    </a>
+    <a class="bag" href="order.html" aria-label="Bag, 0 items">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="bag-count is-zero" aria-hidden="true">0</span>
+    </a>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="primary-nav" class="primary" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-mega">
+          <div class="shop-row"><a href="catalogue.html">Shop</a>
+            <button type="button" class="mega-toggle" aria-expanded="false" aria-controls="mega" aria-label="Shop collections"><svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4l4 4 4-4"/></svg></button></div>
+          <div class="mega" id="mega">
+            <a href="catalogue.html?c=sikh"><b>Sikh Heritage</b><small>Harmandir Sahib, Ik Onkar, Khalsa</small></a>
+            <a href="catalogue.html?c=land"><b>Golden Landscapes</b><small>Gilded trees &amp; moonlit ridges</small></a>
+            <a href="catalogue.html?c=wild"><b>Royal Wildlife</b><small>Elephants, stags, peacocks</small></a>
+            <a href="catalogue.html?c=abs"><b>Gilded Abstract</b><small>Gold leaf &amp; mandala</small></a>
+            <a href="catalogue.html?c=relief"><b>Backlit Relief</b><small>Sculpted panels with LED halo</small></a>
+            <a class="mega-all" href="catalogue.html">View all 30 pieces</a>
+          </div>
+        </li>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Checkout</p>
+    <h1>Nearly <em>hung.</em></h1>
+    <p class="lead">Tell us where it is going and how you would like to pay.</p>
+    <p class="demo-note">Demonstration website. No payment is taken and nothing is sent. Use any made-up card number.</p>
+  </div>
+</section>
+<section class="sec sec--marble">
+  <div class="wrap" id="co-main">
+    <div class="co-grid">
+      <form class="co-form" id="checkout-form" method="post" action="checkout.html" autocomplete="off" novalidate>
+        <div class="co-block">
+          <h2>Contact</h2>
+          <div class="row2">
+            <div class="field"><label for="co-name">Full name</label><input id="co-name" type="text" autocomplete="off" data-req="text" data-msg="Please add your full name."></div>
+            <div class="field"><label for="co-email">Email</label><input id="co-email" type="email" autocomplete="off" data-req="email" data-msg="Please add your email for the confirmation."></div>
+          </div>
+          <div class="field"><label for="co-phone">Phone (optional)</label><input id="co-phone" type="tel" autocomplete="off"></div>
+        </div>
+        <div class="co-block">
+          <h2>Delivery</h2>
+          <div class="field"><label for="co-address">Street address</label><input id="co-address" type="text" autocomplete="off" data-req="text" data-msg="Please add the street address for delivery."></div>
+          <div class="row2">
+            <div class="field"><label for="co-suburb">Suburb</label><input id="co-suburb" type="text" autocomplete="off" data-req="text" data-msg="Please add the suburb."></div>
+            <div class="field"><label for="co-state">State</label><select id="co-state"><option>VIC</option><option>NSW</option><option>QLD</option><option>WA</option><option>SA</option><option>TAS</option><option>ACT</option><option>NT</option></select></div>
+          </div>
+          <div class="field"><label for="co-postcode">Postcode</label><input id="co-postcode" type="text" inputmode="numeric" maxlength="4" autocomplete="off" data-req="postcode" data-msg="Please add a 4 digit postcode."></div>
+          <label class="check" for="co-install"><input id="co-install" type="checkbox"><span>Add professional install for $149 (Melbourne and Sydney metro, includes LED wiring for backlit panels)</span></label>
+        </div>
+        <div class="co-block">
+          <h2>Payment</h2>
+          <p class="pay-note">Demonstration only. These fields are not sent, saved or checked against a bank. Type any numbers.</p>
+          <div class="field"><label for="co-card">Card number</label><input id="co-card" type="text" inputmode="numeric" autocomplete="off" placeholder="4242 4242 4242 4242" data-req="card" data-msg="Please add a card number. Any made-up number works."></div>
+          <div class="field"><label for="co-cardname">Name on card</label><input id="co-cardname" type="text" autocomplete="off" data-req="text" data-msg="Please add the name on the card."></div>
+          <div class="row2">
+            <div class="field"><label for="co-exp">Expiry</label><input id="co-exp" type="text" inputmode="numeric" autocomplete="off" placeholder="MM/YY" data-req="expiry" data-msg="Please add the expiry, like 08/29."></div>
+            <div class="field"><label for="co-cvc">Security code</label><input id="co-cvc" type="text" inputmode="numeric" autocomplete="off" placeholder="123" data-req="cvc" data-msg="Please add the 3 or 4 digit security code."></div>
+          </div>
+        </div>
+        <button class="btn btn--blue" type="submit">Place demo order</button>
+        <p class="demo-note">Demonstration website. No payment is taken.</p>
+      </form>
+      <aside class="co-summary" aria-labelledby="sum-title">
+        <h2 id="sum-title">Your order</h2>
+        <div id="co-summary"></div>
+        <a class="text-link" href="order.html">Edit bag</a>
+      </aside>
+    </div>
+  </div>
+  <noscript><div class="wrap"><p class="form-msg">Checkout needs JavaScript. Call <a class="text-link" href="tel:1300000000">1300 000 000</a> to place an order.</p></div></noscript>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" aria-label="Maharaj Collections, home">
+          <span class="mono" aria-hidden="true">MC</span>
+          <span class="brand-text"><span class="brand-name">Maharaj Collections</span><span class="brand-sub">Fine Wall Art · Australia</span></span>
+        </a>
+        <p>Heirloom wall art for homes with heritage: gilded, sculpted and made to be handed down.</p>
+      </div>
+      <nav aria-label="Shop collections">
+        <h2>Shop</h2>
+        <ul>
+          <li><a href="catalogue.html?c=sikh">Sikh Heritage</a></li>
+          <li><a href="catalogue.html?c=land">Golden Landscapes</a></li>
+          <li><a href="catalogue.html?c=wild">Royal Wildlife</a></li>
+          <li><a href="catalogue.html?c=abs">Gilded Abstract</a></li>
+          <li><a href="catalogue.html?c=relief">Backlit Relief</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Care and services">
+        <h2>Care</h2>
+        <ul>
+          <li><a href="about.html#delivery">Delivery &amp; returns</a></li>
+          <li><a href="about.html#install">Installation</a></li>
+          <li><a href="contact.html">Custom sizes</a></li>
+          <li><a href="contact.html">Trade &amp; gurdwara orders</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Visit</h2>
+        <address>
+          <span>Showroom by appointment</span>
+          <span>Melbourne · Sydney</span>
+          <span>Contact: Taj Rai</span>
+          <a href="tel:1300000000">1300 000 000</a>
+          <a href="mailto:tajrai@maharajcollections.com.au">tajrai@maharajcollections.com.au</a>
+        </address>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p>© 2026 Maharaj Collections. All prices AUD incl. GST.</p>
+      <p>Demonstration website · products, prices &amp; details illustrative</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
