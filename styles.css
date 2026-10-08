@@ -207,7 +207,7 @@ h1 em, h2 em { font-style: italic; color: var(--nishan); }
 .hero h1 { font-size: clamp(2.6rem, 7.4vw, 5.2rem); line-height: 1.02; }
 .hero .lead { font-size: 1.15rem; }
 .hero-art { width: 100%; max-width: 820px; margin-inline: auto; }
-.hero-art .art { aspect-ratio: 770 / 464; }
+.hero-art .art { aspect-ratio: 1672 / 941; }
 .hero-art .art img { object-fit: contain; }
 .scroll-cue { display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--on-ink-soft); text-decoration: none; min-height: 44px; }
 .scroll-cue::after { content: ""; width: 1px; height: 36px; background: var(--gold-line); }
