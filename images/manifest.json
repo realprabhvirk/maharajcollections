@@ -1,15 +1,5 @@
 [
   {
-    "original": "hero-upload.webp",
-    "file": "harmandir-sahib-golden-hour-hero.jpg",
-    "webp": "harmandir-sahib-golden-hour-hero.webp",
-    "product": null,
-    "collection": "Hero",
-    "alt": "Harmandir Sahib, the Golden Temple, glowing gold at sunset beside the sarovar, under a sky of orange clouds",
-    "width": 1672,
-    "height": 941
-  },
-  {
     "original": "sikh-ikonkar-harmandir.jpg",
     "file": "ik-onkar-harmandir-sahib-gold-relief.jpg",
     "webp": "ik-onkar-harmandir-sahib-gold-relief.webp",
@@ -20,14 +10,14 @@
     "height": 526
   },
   {
-    "original": "sikh-golden-temple.jpg",
-    "file": "harmandir-sahib-at-dusk.jpg",
-    "webp": "harmandir-sahib-at-dusk.webp",
+    "original": "hero-upload.webp",
+    "file": "harmandir-sahib-golden-hour-hero.jpg",
+    "webp": "harmandir-sahib-golden-hour-hero.webp",
     "product": "harmandir-dusk",
     "collection": "Sikh Heritage",
-    "alt": "Harmandir Sahib, the Golden Temple, glowing gold under an evening sky of blue and apricot clouds, printed on glass in a dark frame",
-    "width": 770,
-    "height": 464
+    "alt": "Harmandir Sahib, the Golden Temple, glowing gold at sunset beside the sarovar, under a sky of orange clouds",
+    "width": 1672,
+    "height": 941
   },
   {
     "original": "sikh-warrior.jpg",
